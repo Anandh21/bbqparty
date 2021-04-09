@@ -14,21 +14,22 @@ public class Person {
     private int id;
     private String lastName;
     private String firstName;
-    private String
+    private String phone;
 
-    @JsonBackReference
+    @JsonBackReference(value = "barbecue-person")
     @ManyToOne
     private Barbecue barbecue;
 
-    @JsonManagedReference
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JsonManagedReference(value = "person-aliment" )
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Aliment> aliments;
 
     public Person(){}
 
-    public Person(String lastName, String firstName, Barbecue barbecue) {
+    public Person(String lastName, String firstName, Barbecue barbecue, String phone) {
         this.lastName = lastName;
         this.firstName = firstName;
+        this.phone = phone;
         this.barbecue = barbecue;
     }
 
@@ -54,6 +55,14 @@ public class Person {
 
     public void setFirstName(String firstNane) {
         this.firstName = firstNane;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
 
     public Barbecue getBarbecue() {
