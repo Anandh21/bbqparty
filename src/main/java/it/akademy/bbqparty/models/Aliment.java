@@ -24,8 +24,7 @@ public class Aliment {
 
     public Aliment(){}
 
-    public Aliment(int id, String name, String quantity) {
-        this.id = id;
+    public Aliment( String name, String quantity) {
         this.name = name;
         this.quantity = quantity;
     }
